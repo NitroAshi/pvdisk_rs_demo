@@ -11,6 +11,6 @@ struct Args {
 fn main() {
     let args: Args = argh::from_env();
     println!("{:#?}", args.design);
-    let design = args.design.unwrap();
+    let design: String = args.design.unwrap();
     println!("{}", design);
 }
