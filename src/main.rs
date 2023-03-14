@@ -1,16 +1,14 @@
-use argh::FromArgs;
-
-#[derive(FromArgs)]
-/// pvdisk_rs
-struct Args {
-    /// design name
-    #[argh(option, short = 'd')]
-    design: Option<String>,
-}
+// mod cli;
+use pvdisk_rs_demo::*;
+use std::io::BufRead;
 
 fn main() {
-    let args: Args = argh::from_env();
-    println!("{:#?}", args.design);
-    let design: String = args.design.unwrap();
-    println!("{}", design);
+    let inputs: CliInputs = argh::from_env();
+    // let design: String = inputs.design.unwrap();
+    // println!("{}", design);
+    let filename: String = inputs.filename;
+    let reader = read_file(&filename).unwrap();
+    for line in reader.lines() {
+        println!("{}", line.unwrap());
+    }
 }
